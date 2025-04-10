@@ -178,12 +178,12 @@
             // 
             // BtnSearch
             // 
-            BtnSearch.Image = Properties.Resources.search;
-            BtnSearch.Location = new Point(530, 16);
+            BtnSearch.ForeColor = SystemColors.ActiveBorder;
+            BtnSearch.Image = Properties.Resources.search_small;
+            BtnSearch.Location = new Point(558, 28);
             BtnSearch.Name = "BtnSearch";
-            BtnSearch.Size = new Size(78, 66);
+            BtnSearch.Size = new Size(50, 57);
             BtnSearch.TabIndex = 2;
-            BtnSearch.Text = "BtnSearch";
             BtnSearch.UseVisualStyleBackColor = true;
             BtnSearch.Click += BtnSearch_Click;
             // 
@@ -192,7 +192,7 @@
             TxtSearch.Location = new Point(29, 53);
             TxtSearch.Name = "TxtSearch";
             TxtSearch.PlaceholderText = "Data to search";
-            TxtSearch.Size = new Size(484, 27);
+            TxtSearch.Size = new Size(523, 27);
             TxtSearch.TabIndex = 1;
             // 
             // label2
