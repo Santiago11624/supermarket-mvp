@@ -12,29 +12,57 @@ namespace Supermarket_mvp._Repositories
 {
     internal class PayModeRepository : BaseRepository, IPayModeRepository
     {
-        public PayModeRepository(string connectionString) {
-        this.connectionString = connectionString;
+        public PayModeRepository(string connectionString) 
+        {
+            this.connectionString = connectionString;
         }
         public void Add(PayModeModel payModeModel)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO PayMode VALUES (@name,@observation)";
+                command.Parameters.Add("@name", SqlDbType.NVarChar).Value = payModeModel.Name;
+                command.Parameters.Add("@observation", SqlDbType.NVarChar).Value = payModeModel.Observation;
+                command.ExecuteNonQuery();
+            }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "DELETE FROM PayMode WHERE Pay_Mode_Id=@id";
+                command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                command.ExecuteNonQuery();
+            }
         }
 
         public void Edit(PayModeModel payModeModel)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "UPDATE PayMode SET Pay_Mode_Name=@name, Pay_Mode_Observation=@observation WHERE Pay_Mode_Id=@id";
+                command.Parameters.Add("@name", SqlDbType.NVarChar).Value = payModeModel.Name;
+                command.Parameters.Add("@observation", SqlDbType.NVarChar).Value = payModeModel.Observation;
+                command.Parameters.Add("@id", SqlDbType.Int).Value = payModeModel.Id;
+                command.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<PayModeModel> GetAll()
         {
             var payModeList = new List<PayModeModel>();
             using (var connection = new SqlConnection(connectionString))
-            using (var command = connection.CreateCommand())
+            using (var command = new SqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
@@ -57,7 +85,7 @@ namespace Supermarket_mvp._Repositories
 
         public IEnumerable<PayModeModel> GetByValue(string value)
         {
-           var payModeList = new List<PayModeModel>();
+            var payModeList = new List<PayModeModel>();
             var payModeId = int.TryParse(value, out _)? Convert.ToInt32(value) : 0;
             string payModeName = value;
             using (var connection = new SqlConnection(connectionString))

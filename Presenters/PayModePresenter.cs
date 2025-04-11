@@ -31,40 +31,108 @@ namespace Supermarket_mvp.Presenters
 
             this.view.SetPayModeListBildingSource(payModeBindingSource);
 
-            LoadAllPayModes();
+            LoadAllPayModeList();
 
             this.view.Show();
         }
 
         private void LoadAllPayModes()
         {
-            payModeList = repository.GetAll();
-            payModeBindingSource.DataSource = payModeList;
+            
         }
 
         private void CancelAction(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CleanViewFields();
         }
 
         private void SavePayMode(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            // Se crea un objeto  de la  clase PayModeModel y se asignado los datos
+            // De las cajas de texto  de la vista
+
+            var payMode = new PayModeModel();
+            payMode.Id = Convert.ToInt32(view.PayModeId);
+            payMode.Name = view.PayModeName;
+            payMode.Observation = view.PayModeObservation;
+
+            try
+            {
+                new Common.ModelDataValidation().Validate(payMode);
+                if (view.IsEdit)
+                {
+                    repository.Edit(payMode);
+                    view.Message = "PayMode edited successfuly";
+                }
+                else
+                {
+                    repository.Add(payMode);
+                    view.Message = "PayMode added successfuly";
+                }
+                view.IsSuccessful = true;
+                LoadAllPayModeList();
+                CleanViewFields();
+            }
+            catch (Exception ex)
+            {
+                // Si ocurre un error se asigna el mensaje de error a la propiedad
+                // y a la propiedad Message de la vista
+                view.IsSuccessful = false;
+                view.Message = ex.Message;
+            }
+        }
+
+        private void LoadAllPayModeList()
+        {
+            payModeList = repository.GetAll();
+            payModeBindingSource.DataSource = payModeList;
+        }
+
+        private void CleanViewFields()
+        {
+            view.PayModeId = "0";
+            view.PayModeName = "";
+            view.PayModeObservation = "";
         }
 
         private void DeleteSelectedPayMode(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //Se recupera el objeto de la fila selecciianada del datagridview
+                var payMode = (PayModeModel) payModeBindingSource.Current;
+
+                //Se invoca el metodo Delete del repositorio pasandole el ID del Pay Mode
+                repository.Delete(payMode.Id);
+                view.IsSuccessful = true;
+                view.Message = "PayMode deleted successfuly";
+                LoadAllPayModes();
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccessful = false;
+                view.Message = "An error ocurred, could not  delete pay mode";
+            }
         }
 
         private void LoadSelectPayModeToEdit(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //Se obtiene el objeto del datagridview que se encuntra selecionado
+            var payMode = (PayModeModel)payModeBindingSource.Current;
+
+            //Se cambia el contenido de las cajas de texto por el objeto recuperado
+            // del  datagridview
+            view.PayModeId = payMode.Id.ToString();
+            view.PayModeName = payMode.Name;
+            view.PayModeObservation = payMode.Observation;
+
+            //Se establece el modo como edicion
+            view.IsEdit = true;
         }
 
         private void AddNewPayMode(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            view.IsEdit = false;    
         }
 
         private void SearchPayMode(object? sender, EventArgs e)

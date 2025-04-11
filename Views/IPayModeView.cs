@@ -15,7 +15,7 @@ namespace Supermarket_mvp.Views
         string SerachValue { get; set; }
         bool IsEdit { get; set; }
         bool IsSuccessful { get; set; }
-        string menssage { get; set; }
+        string Message { get; set; }
 
         event EventHandler SearchEvent;
         event EventHandler AddNewEvent;
