@@ -153,6 +153,16 @@ namespace Supermarket_mvp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap customer_review {
+            get {
+                object obj = ResourceManager.GetObject("customer-review", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
@@ -216,6 +226,16 @@ namespace Supermarket_mvp.Properties {
         internal static System.Drawing.Bitmap providers {
             get {
                 object obj = ResourceManager.GetObject("providers", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap satisfaccion {
+            get {
+                object obj = ResourceManager.GetObject("satisfaccion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
