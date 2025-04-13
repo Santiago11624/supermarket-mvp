@@ -39,20 +39,29 @@ namespace Supermarket_mvp.Views
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPageCategoryList = new TabPage();
-            tabPageCategoryDetail = new TabPage();
-            label2 = new Label();
-            TxtSearch = new TextBox();
-            button1 = new Button();
-            dataGridView1 = new DataGridView();
-            BtnNew = new Button();
-            BtnEdit = new Button();
-            BtnDelete = new Button();
             BtnClose = new Button();
+            BtnDelete = new Button();
+            BtnEdit = new Button();
+            BtnNew = new Button();
+            DgCategory = new DataGridView();
+            BtnSearch = new Button();
+            TxtSearch = new TextBox();
+            label2 = new Label();
+            tabPageCategoryDetail = new TabPage();
+            BtnCancel = new Button();
+            BtnSave = new Button();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            TxtCategoryObservation = new TextBox();
+            TxtCategoryName = new TextBox();
+            TxtCategoryId = new TextBox();
             panelCategoryButtons.SuspendLayout();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPageCategoryList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DgCategory).BeginInit();
+            tabPageCategoryDetail.SuspendLayout();
             SuspendLayout();
             // 
             // panelCategoryButtons
@@ -156,8 +165,8 @@ namespace Supermarket_mvp.Views
             tabPageCategoryList.Controls.Add(BtnDelete);
             tabPageCategoryList.Controls.Add(BtnEdit);
             tabPageCategoryList.Controls.Add(BtnNew);
-            tabPageCategoryList.Controls.Add(dataGridView1);
-            tabPageCategoryList.Controls.Add(button1);
+            tabPageCategoryList.Controls.Add(DgCategory);
+            tabPageCategoryList.Controls.Add(BtnSearch);
             tabPageCategoryList.Controls.Add(TxtSearch);
             tabPageCategoryList.Controls.Add(label2);
             tabPageCategoryList.Location = new Point(4, 29);
@@ -168,24 +177,60 @@ namespace Supermarket_mvp.Views
             tabPageCategoryList.Text = "Category List";
             tabPageCategoryList.UseVisualStyleBackColor = true;
             // 
-            // tabPageCategoryDetail
+            // BtnClose
             // 
-            tabPageCategoryDetail.Location = new Point(4, 29);
-            tabPageCategoryDetail.Name = "tabPageCategoryDetail";
-            tabPageCategoryDetail.Padding = new Padding(3);
-            tabPageCategoryDetail.Size = new Size(816, 428);
-            tabPageCategoryDetail.TabIndex = 1;
-            tabPageCategoryDetail.Text = "Category Detail";
-            tabPageCategoryDetail.UseVisualStyleBackColor = true;
+            BtnClose.Image = Properties.Resources.cerrar;
+            BtnClose.Location = new Point(626, 351);
+            BtnClose.Name = "BtnClose";
+            BtnClose.Size = new Size(182, 69);
+            BtnClose.TabIndex = 7;
+            BtnClose.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // BtnDelete
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(25, 30);
-            label2.Name = "label2";
-            label2.Size = new Size(117, 20);
-            label2.TabIndex = 0;
-            label2.Text = "Search Category";
+            BtnDelete.Image = Properties.Resources.delete;
+            BtnDelete.Location = new Point(626, 273);
+            BtnDelete.Name = "BtnDelete";
+            BtnDelete.Size = new Size(182, 59);
+            BtnDelete.TabIndex = 6;
+            BtnDelete.UseVisualStyleBackColor = true;
+            BtnDelete.Click += button4_Click;
+            // 
+            // BtnEdit
+            // 
+            BtnEdit.Image = Properties.Resources.edit;
+            BtnEdit.Location = new Point(626, 188);
+            BtnEdit.Name = "BtnEdit";
+            BtnEdit.Size = new Size(182, 59);
+            BtnEdit.TabIndex = 5;
+            BtnEdit.UseVisualStyleBackColor = true;
+            // 
+            // BtnNew
+            // 
+            BtnNew.Image = Properties.Resources._new;
+            BtnNew.Location = new Point(626, 106);
+            BtnNew.Name = "BtnNew";
+            BtnNew.Size = new Size(182, 59);
+            BtnNew.TabIndex = 4;
+            BtnNew.UseVisualStyleBackColor = true;
+            // 
+            // DgCategory
+            // 
+            DgCategory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DgCategory.Location = new Point(25, 106);
+            DgCategory.Name = "DgCategory";
+            DgCategory.RowHeadersWidth = 51;
+            DgCategory.Size = new Size(595, 314);
+            DgCategory.TabIndex = 3;
+            // 
+            // BtnSearch
+            // 
+            BtnSearch.Image = Properties.Resources.search_small;
+            BtnSearch.Location = new Point(560, 33);
+            BtnSearch.Name = "BtnSearch";
+            BtnSearch.Size = new Size(60, 60);
+            BtnSearch.TabIndex = 2;
+            BtnSearch.UseVisualStyleBackColor = true;
             // 
             // TxtSearch
             // 
@@ -195,56 +240,106 @@ namespace Supermarket_mvp.Views
             TxtSearch.Size = new Size(529, 27);
             TxtSearch.TabIndex = 1;
             // 
-            // button1
+            // label2
             // 
-            button1.Image = Properties.Resources.search_small;
-            button1.Location = new Point(560, 33);
-            button1.Name = "button1";
-            button1.Size = new Size(60, 60);
-            button1.TabIndex = 2;
-            button1.UseVisualStyleBackColor = true;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(25, 30);
+            label2.Name = "label2";
+            label2.Size = new Size(142, 23);
+            label2.TabIndex = 0;
+            label2.Text = "Search Category";
             // 
-            // dataGridView1
+            // tabPageCategoryDetail
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(25, 106);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(595, 314);
-            dataGridView1.TabIndex = 3;
+            tabPageCategoryDetail.Controls.Add(BtnCancel);
+            tabPageCategoryDetail.Controls.Add(BtnSave);
+            tabPageCategoryDetail.Controls.Add(label5);
+            tabPageCategoryDetail.Controls.Add(label4);
+            tabPageCategoryDetail.Controls.Add(label3);
+            tabPageCategoryDetail.Controls.Add(TxtCategoryObservation);
+            tabPageCategoryDetail.Controls.Add(TxtCategoryName);
+            tabPageCategoryDetail.Controls.Add(TxtCategoryId);
+            tabPageCategoryDetail.Location = new Point(4, 29);
+            tabPageCategoryDetail.Name = "tabPageCategoryDetail";
+            tabPageCategoryDetail.Padding = new Padding(3);
+            tabPageCategoryDetail.RightToLeft = RightToLeft.Yes;
+            tabPageCategoryDetail.Size = new Size(816, 428);
+            tabPageCategoryDetail.TabIndex = 1;
+            tabPageCategoryDetail.Text = "Category Detail";
+            tabPageCategoryDetail.UseVisualStyleBackColor = true;
             // 
-            // BtnNew
+            // BtnCancel
             // 
-            BtnNew.Location = new Point(626, 106);
-            BtnNew.Name = "BtnNew";
-            BtnNew.Size = new Size(182, 59);
-            BtnNew.TabIndex = 4;
-            BtnNew.UseVisualStyleBackColor = true;
+            BtnCancel.Image = Properties.Resources.cancel;
+            BtnCancel.Location = new Point(642, 315);
+            BtnCancel.Name = "BtnCancel";
+            BtnCancel.Size = new Size(94, 80);
+            BtnCancel.TabIndex = 7;
+            BtnCancel.UseVisualStyleBackColor = true;
             // 
-            // BtnEdit
+            // BtnSave
             // 
-            BtnEdit.Location = new Point(626, 188);
-            BtnEdit.Name = "BtnEdit";
-            BtnEdit.Size = new Size(182, 59);
-            BtnEdit.TabIndex = 5;
-            BtnEdit.UseVisualStyleBackColor = true;
+            BtnSave.Image = Properties.Resources.save;
+            BtnSave.Location = new Point(508, 315);
+            BtnSave.Name = "BtnSave";
+            BtnSave.Size = new Size(94, 80);
+            BtnSave.TabIndex = 6;
+            BtnSave.UseVisualStyleBackColor = true;
             // 
-            // BtnDelete
+            // label5
             // 
-            BtnDelete.Location = new Point(626, 273);
-            BtnDelete.Name = "BtnDelete";
-            BtnDelete.Size = new Size(182, 59);
-            BtnDelete.TabIndex = 6;
-            BtnDelete.UseVisualStyleBackColor = true;
-            BtnDelete.Click += button4_Click;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(38, 195);
+            label5.Name = "label5";
+            label5.Size = new Size(159, 20);
+            label5.TabIndex = 5;
+            label5.Text = "CategoryObservation";
             // 
-            // BtnClose
+            // label4
             // 
-            BtnClose.Location = new Point(626, 351);
-            BtnClose.Name = "BtnClose";
-            BtnClose.Size = new Size(182, 69);
-            BtnClose.TabIndex = 7;
-            BtnClose.UseVisualStyleBackColor = true;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(38, 106);
+            label4.Name = "label4";
+            label4.Size = new Size(115, 20);
+            label4.TabIndex = 4;
+            label4.Text = "CategoryName";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(38, 18);
+            label3.Name = "label3";
+            label3.Size = new Size(87, 20);
+            label3.TabIndex = 3;
+            label3.Text = "CategoryId";
+            // 
+            // TxtCategoryObservation
+            // 
+            TxtCategoryObservation.Location = new Point(38, 223);
+            TxtCategoryObservation.Multiline = true;
+            TxtCategoryObservation.Name = "TxtCategoryObservation";
+            TxtCategoryObservation.Size = new Size(376, 114);
+            TxtCategoryObservation.TabIndex = 2;
+            // 
+            // TxtCategoryName
+            // 
+            TxtCategoryName.Location = new Point(38, 142);
+            TxtCategoryName.Name = "TxtCategoryName";
+            TxtCategoryName.Size = new Size(254, 27);
+            TxtCategoryName.TabIndex = 1;
+            // 
+            // TxtCategoryId
+            // 
+            TxtCategoryId.Location = new Point(38, 53);
+            TxtCategoryId.Name = "TxtCategoryId";
+            TxtCategoryId.ReadOnly = true;
+            TxtCategoryId.Size = new Size(125, 27);
+            TxtCategoryId.TabIndex = 0;
+            TxtCategoryId.Text = "0";
             // 
             // CategoryView
             // 
@@ -262,7 +357,9 @@ namespace Supermarket_mvp.Views
             tabControl1.ResumeLayout(false);
             tabPageCategoryList.ResumeLayout(false);
             tabPageCategoryList.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DgCategory).EndInit();
+            tabPageCategoryDetail.ResumeLayout(false);
+            tabPageCategoryDetail.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -289,13 +386,21 @@ namespace Supermarket_mvp.Views
         private TabControl tabControl1;
         private TabPage tabPageCategoryList;
         private TabPage tabPageCategoryDetail;
-        private DataGridView dataGridView1;
-        private Button button1;
+        private DataGridView DgCategory;
+        private Button BtnSearch;
         private TextBox TxtSearch;
         private Label label2;
         private Button BtnClose;
         private Button BtnDelete;
         private Button BtnEdit;
         private Button BtnNew;
+        private TextBox TxtCategoryObservation;
+        private TextBox TxtCategoryName;
+        private TextBox TxtCategoryId;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Button BtnSave;
+        private Button BtnCancel;
     }
 }
