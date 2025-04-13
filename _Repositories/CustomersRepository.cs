@@ -40,7 +40,7 @@ namespace Supermarket_mvp._Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM Customers ORDER BY Customers_Document_Number DESC";
+                command.CommandText = "SELECT * FROM Customer ORDER BY Document_Number DESC";
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())

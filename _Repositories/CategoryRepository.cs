@@ -1,8 +1,13 @@
-﻿using Supermarket_mvp.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Supermarket_mvp.Models;
+using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data;
+
 
 namespace Supermarket_mvp._Repositories
 {
@@ -12,14 +17,12 @@ namespace Supermarket_mvp._Repositories
         {
             this.connectionString = connectionString;
         }
-
         public void Add(CategoryModel category)
         {
+            
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand("INSERT INTO Category (Category_Name, Category_Observation) VALUES (@name, @obs)", connection))
+            using (var command = new SqlCommand("INSERT INTO Category VALUES (@name, @obs)", connection))
             {
-                
-                command.Connection = connection;
                 command.Parameters.Add("@name", SqlDbType.NVarChar).Value = category.Name;
                 command.Parameters.Add("@obs", SqlDbType.NVarChar).Value = category.Observation;
                 connection.Open();
@@ -55,7 +58,7 @@ namespace Supermarket_mvp._Repositories
         {
             var categoryList = new List<CategoryModel>();
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand(SELECT * FROM Category ORDER BY Category_Id DESC", connection))
+            using (var command = new SqlCommand("SELECT * FROM Category ORDER BY Category_Id DESC", connection))
             {
                 connection.Open();
                 using (var reader = command.ExecuteReader())

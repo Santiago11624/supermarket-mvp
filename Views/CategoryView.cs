@@ -129,14 +129,16 @@ namespace Supermarket_mvp.Views
             {
                 instance = new CategoryView();
                 instance.MdiParent = parentContainer;
+
                 instance.FormBorderStyle = FormBorderStyle.None;
                 instance.Dock = DockStyle.Fill;
             }
             else
             {
-                if (instance.WindowState == FormWindowState.Minimized)
-                    instance.WindowState = FormWindowState.Normal;
-
+                if (instance == null || instance.IsDisposed)
+                {
+                    instance = new CategoryView();
+                }
                 instance.BringToFront();
             }
 
